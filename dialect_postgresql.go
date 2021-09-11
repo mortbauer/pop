@@ -154,7 +154,9 @@ func (p *postgresql) URL() string {
 	if c.URL != "" {
 		return c.URL
 	}
-	s := "postgres://%s:%s@%s:%s/%s?%s"
+    //from: https://github.com/gobuffalo/pop/issues/412
+	//s := "postgres://%s:%s@%s:%s/%s?%s"
+    s := "postgres://%s:%s@:%s/postgres?host=%s&%s"
 	return fmt.Sprintf(s, c.User, c.Password, c.Host, c.Port, c.Database, c.OptionsString(""))
 }
 
